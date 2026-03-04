@@ -18,41 +18,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: Scheduling of tasks, Data Model & Logic
 
-### Jane Doe
+### Bai Zihan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bai-zihan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Bai-Zihan)]
 
-* Role: Team Lead
+* Role:  Deliverables and deadline
+* Responsibilities: Data Model & Logic
+
+
+### Kelvin Ng
+
+<img src="images/kelv5.png" width="200px">
+
+[[github](http://github.com/kelv5)]
+
+* Role: Code Quality & Task Tracking
 * Responsibilities: UI
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Chen Guanhua 
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/e-hua.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[homepage](https://chenguanhua.com)]
+[[github](https://github.com/e-hua)]
 
-### Jean Doe
+* Role: Integration & Testing
+* Responsibilities: DevOps + Data Model & Logic
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Josiah Low 
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/josiah-low.png" width="200px">
 
-### James Doe
+[[github](http://github.com/josiah-low)]
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
+* Role: Documentation & Code Quality
 * Responsibilities: UI
