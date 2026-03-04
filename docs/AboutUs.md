@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/Bai-Zihan)]
 
 * Role:  Deliverables and deadline
-* Responsibilities: Data
+* Responsibilities: Data Model & Logic
 
 ### Johnny Doe
 
