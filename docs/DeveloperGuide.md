@@ -290,6 +290,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAConnect` and the **Actor** is the `TA`, unless specified otherwise)
 
+**Use case: UC01 - View All Contacts**
+
 **Preconditions:** User has at least one contact in their list
 
 **Guarantees:** All of the contacts in the address book are displayed
