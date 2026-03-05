@@ -317,9 +317,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. All commands should have a response within 500ms.
+2. All contact information should be stored locally.
+3. Whenever a typo or mistake is made there is a message instead of a crash.
+4. All actions other than ‘list’ should have a warning before it for confirmation.
+5. The software should be able to host at least 100 students in total.
+6. The software should take no more than 200MB of space.
+7. Exported files for backup should be stored in a user-editable format.
+8. The software should be platform-independent, supporting all Windows, macOS and Linux.
+9. The software should not require any installers and should be able to be packaged into a single JAR file.
+10. The software should not depend on any remote server.
+11. GUI should provide visual feedback, but input is primarily text-based.
+12. The software should be able to handle corrupted and missing files.
+13. The software should be single-user based only.
 
 *{More to be added}*
 
