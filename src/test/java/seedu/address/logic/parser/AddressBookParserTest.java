@@ -31,11 +31,11 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
-
     public static final String LOWERCASE_LIST_COMMAND = "list";
     public static final String UPPERCASE_LIST_COMMAND = "LIST";
     public static final String ALTERNATING_CASE_LIST_COMMAND = "LisT";
+
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
