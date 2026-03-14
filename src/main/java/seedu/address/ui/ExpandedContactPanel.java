@@ -40,7 +40,7 @@ public class ExpandedContactPanel extends UiPart<Region> {
      * in their contact list using their mouse. Displays default message if
      * the selected contact is null.
      *
-     * @param selectedContact
+     * @param selectedContact The person who is currently selected in the contact list.
      */
     public void setSelectedContact(Person selectedContact) {
         if (selectedContact == null) {
