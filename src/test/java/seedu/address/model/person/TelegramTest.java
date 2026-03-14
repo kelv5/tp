@@ -60,4 +60,12 @@ public class TelegramTest {
         // case insensitive -> returns true
         assertTrue(telegram.equals(new Telegram("@JohnDoe")));
     }
+
+    @Test
+    public void hashCodeMethod() {
+        Telegram telegram1 = new Telegram("@johndoe");
+        Telegram telegram2 = new Telegram("@johndoe");
+
+        assertTrue(telegram1.hashCode() == telegram2.hashCode());
+    }
 }

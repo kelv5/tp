@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -258,5 +259,28 @@ public class ParserUtilTest {
         assertEquals(expectedName.hashCode(),
                 ParserUtil.parseName(VALID_NAME_WITH_EXTRA_INTERNAL_WHITESPACES).hashCode());
         assertEquals(expectedName.hashCode(), ParserUtil.parseName(VALID_NAME_WITH_INTERNAL_TAB).hashCode());
+    }
+
+    @Test
+    public void parseTelegram_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTelegram(null));
+    }
+
+    @Test
+    public void parseTelegram_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTelegram("!!!invalid"));
+    }
+
+    @Test
+    public void parseTelegram_validValueWithoutWhitespace_returnsTelegram() throws Exception {
+        Telegram expectedTelegram = new Telegram("@johndoe");
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram("@johndoe"));
+    }
+
+    @Test
+    public void parseTelegram_validValueWithWhitespace_returnsTrimmedTelegram() throws Exception {
+        String telegramWithWhitespace = "  @johndoe  ";
+        Telegram expectedTelegram = new Telegram("@johndoe");
+        assertEquals(expectedTelegram, ParserUtil.parseTelegram(telegramWithWhitespace));
     }
 }

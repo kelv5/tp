@@ -85,6 +85,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different telegram -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTelegram("@different_tg").build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -96,5 +100,12 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address="
                 + ALICE.getAddress() + ", telegram=" + ALICE.getTelegram() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        // same values -> returns same hashcode
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertTrue(ALICE.hashCode() == aliceCopy.hashCode());
     }
 }
