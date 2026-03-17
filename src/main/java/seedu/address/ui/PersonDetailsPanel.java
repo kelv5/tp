@@ -19,10 +19,13 @@ public class PersonDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "PersonDetailsPanel.fxml";
 
-    private static final String[] FIELD_NAMES = { "Name", "Email", "Telegram", "Phone", "Address" };
+    private static final String[] FIELD_NAMES = { "Email", "Telegram", "Phone", "Address" };
     private static final String EMPTY_FIELD_VALUE = "---";
 
     private final Logger logger = LogsCenter.getLogger(PersonDetailsPanel.class);
+
+    @FXML
+    private Label name;
 
     @FXML
     private HBox fieldsContainer; // Contains fieldNamesColumn and fieldValuesColumn
@@ -63,9 +66,11 @@ public class PersonDetailsPanel extends UiPart<Region> {
      * @param message The default message to display.
      */
     private void displayDefaultDetails(String message) {
-        String[] fieldValues = { message, "", "", "", "" };
+        name.setText(message);
 
+        String[] fieldValues = { "", "", "", "" };
         displayFields(FIELD_NAMES, fieldValues);
+
         tags.getChildren().clear();
     }
 
@@ -75,6 +80,8 @@ public class PersonDetailsPanel extends UiPart<Region> {
      * @param person The {@code person} whose details are displayed.
      */
     private void displayPersonDetails(Person person) {
+        name.setText(formatValue(person.getName().fullName));
+
         String[] fieldValues = { person.getName().fullName, person.getEmail().value, person.getTelegram().value,
                 person.getPhone().value, person.getAddress().value };
 
