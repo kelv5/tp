@@ -30,3 +30,21 @@
 #fieldValuesColumn {
     -fx-padding: 0 0 24 0;
 }
+
+#name {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+#fieldNamesColumn .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#fieldValuesColumn .label {
+    -fx-text-fill: rgb(184, 184, 184);
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
