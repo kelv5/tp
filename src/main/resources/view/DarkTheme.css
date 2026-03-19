@@ -139,13 +139,19 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
+}
+
+.pane-without-border {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
 }
 
 .status-bar {
@@ -341,6 +347,10 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
+}
+
+.result-display .corner {
+    -fx-background-color: transparent;
 }
 
 #tags {

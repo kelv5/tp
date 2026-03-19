@@ -28,6 +28,9 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        logger.fine("Initializing PersonListPanel with " + personList.size() + " contacts in the list.");
+
         personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
                 -> onPersonSelected.accept(newValue));
     }
