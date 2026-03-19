@@ -23,13 +23,14 @@ public class PersonCardField extends UiPart<Region> {
      * Displays {@code "—"} if the value is empty or absent.
      *
      * @param fieldType The label describing the field (e.g. "Phone", "Address").
-     * @param value The value to display. Use an empty string or dash if the field is absent.
+     * @param value The value to display.
      */
     public PersonCardField(String fieldType, String value) {
         super(FXML);
         this.fieldType.setText(fieldType + ":");
-        if (value.isEmpty() || value.equals("-")) {
+        if (value.equals("-")) {
             this.value.setText(EMPTY_FIELD_VALUE);
+            this.fieldType.getStyleClass().add("field-missing");
             this.value.getStyleClass().add("field-missing");
         } else {
             this.value.setText(value);
