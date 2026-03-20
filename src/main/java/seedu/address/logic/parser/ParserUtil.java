@@ -152,7 +152,7 @@ public class ParserUtil {
             return new Telegram("-");
         }
 
-        if (!Telegram.isValidTelegramHandle(trimmedTelegram) && !trimmedTelegram.equals("-")) {
+        if (!Telegram.isValidTelegramHandle(trimmedTelegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return new Telegram(trimmedTelegram);

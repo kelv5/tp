@@ -30,9 +30,7 @@ public class Telegram {
             cleanHandle = cleanHandle.substring(1);
         }
 
-        if (!cleanHandle.equals("-")) {
-            checkArgument(isValidTelegramHandle(cleanHandle), MESSAGE_CONSTRAINTS);
-        }
+        checkArgument(isValidTelegramHandle(cleanHandle), MESSAGE_CONSTRAINTS);
 
         this.value = cleanHandle;
     }
