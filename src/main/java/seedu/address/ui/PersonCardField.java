@@ -33,7 +33,11 @@ public class PersonCardField extends UiPart<Region> {
             this.fieldType.getStyleClass().add("field-missing");
             this.value.getStyleClass().add("field-missing");
         } else {
-            this.value.setText(value);
+            if (fieldType.equals("Telegram")) {
+                this.value.setText("@" + value);
+            } else {
+                this.value.setText(value);
+            }
         }
     }
 }
