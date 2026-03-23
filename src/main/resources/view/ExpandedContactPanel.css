@@ -4,14 +4,14 @@
     -fx-border-color: #818181;
     -fx-border-radius: 10;
     -fx-border-width: 4;
-    -fx-padding: 18 15 18 22;
+    -fx-padding: 14 18 12 22;
 }
 
 .name-label {
     -fx-text-fill: #342a01;
     -fx-font-weight: bold;
     -fx-font-size: 24px;
-    -fx-padding: 0 0 10 0;
+    -fx-padding: 0 0 6 0;
 }
 
 .shared-scroll-pane {
@@ -67,11 +67,18 @@
 #tags .label {
     -fx-background-color: #775500ca;
     -fx-padding: 3 6 3 6;
-    -fx-border-radius: 4;
     -fx-background-radius: 4;
     -fx-font-size: 13px;
 }
 
 .flow-pane {
     -fx-padding: 0 4 0 0;
+}
+
+.course-tutorial-label {
+    -fx-background-color: rgb(208, 177, 0);
+    -fx-padding: 3 6 3 6;
+    -fx-background-radius: 4;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
 }

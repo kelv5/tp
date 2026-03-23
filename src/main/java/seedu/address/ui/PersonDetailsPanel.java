@@ -5,13 +5,13 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TutInfo;
 
 /**
  * An UI component that displays full details of a {@code person}.
@@ -30,19 +30,16 @@ public class PersonDetailsPanel extends UiPart<Region> {
     private Label name;
 
     @FXML
-    private HBox fieldsContainer; // Contains fieldNamesColumn and fieldValuesColumn
-
-    @FXML
     private VBox fieldNamesColumn;
 
     @FXML
     private VBox fieldValuesColumn;
 
     @FXML
-    private ScrollPane fieldValuesScrollPane;
+    private FlowPane tags;
 
     @FXML
-    private FlowPane tags;
+    private HBox courseTutorials;
 
     /**
      * Creates a {@code PersonDetailsPanel} showing the default details.
@@ -75,6 +72,8 @@ public class PersonDetailsPanel extends UiPart<Region> {
 
         name.setText(message);
 
+        courseTutorials.getChildren().clear();
+
         String[] fieldValues = { "", "", "", "" };
         displayFields(fieldValues);
 
@@ -88,7 +87,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
      */
     private void displayPersonDetails(Person person) {
 
-        name.setText(formatValue(person.getName().fullName));
+        name.setText(formatFieldValue(person.getName().fullName));
 
         String[] fieldValues = {
                 person.getEmail().value,
@@ -97,17 +96,28 @@ public class PersonDetailsPanel extends UiPart<Region> {
                 person.getAddress().value
         };
 
+        displayCourseTutorials(person);
         displayFields(fieldValues);
         displayTags(person);
     }
 
     /**
     * Displays the tags of a {@code person} in the panel.
+    * Sorts the tags by tag name.
     *
     * @param person The {@code person} whose tags are displayed.
     */
     private void displayTags(Person person) {
+        assert person.getTags() != null : "Tags of the person must not be null";
+
         tags.getChildren().clear();
+
+        if (person.getTags().isEmpty()) {
+            logger.fine("No tags to display for " + person.getName().fullName);
+            return;
+        }
+
+        logger.fine("Displaying " + person.getTags().size() + " tags for " + person.getName().fullName);
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -139,7 +149,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
     * @param fieldValue The value of the field.
     */
     private void addFieldToColumns(String fieldName, String fieldValue) {
-        String formattedValue = formatValue(fieldValue);
+        String formattedValue = formatFieldValue(fieldValue);
 
         Label nameLabel = createFieldLabel(fieldName + ":", fieldValue);
         Label valueLabel = createFieldLabel(formattedValue, fieldValue);
@@ -173,7 +183,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
      * @param value The value of the field.
      * @return The formatted field value for display.
      */
-    private String formatValue(String value) {
+    private String formatFieldValue(String value) {
         assert value != null : "Field values must not be null";
 
         if (isMissingValue(value)) {
@@ -192,4 +202,50 @@ public class PersonDetailsPanel extends UiPart<Region> {
     private boolean isMissingValue(String value) {
         return (value.isEmpty() || value.equals("-"));
     }
+
+    /**
+    * Displays the course and tutorial information of a person in the courseTutorials HBox.
+    * Sorts the tutorial information by course code first, then by tutorial code.
+    *
+    * @param person The person whose course and tutorial information is displayed.
+    */
+    private void displayCourseTutorials(Person person) {
+        assert person.getTutInfos() != null : "Tutorial information list of the person must not be null";
+
+        courseTutorials.getChildren().clear();
+
+        if (person.getTutInfos().isEmpty()) {
+            logger.fine("No course/tutorials to display for " + person.getName().fullName);
+            return;
+        }
+
+        logger.fine("Displaying " + person.getTutInfos().size() + " tutorials for " + person.getName().fullName);
+
+        person.getTutInfos().stream()
+                .sorted(Comparator.comparing(TutInfo::getCourseCode).thenComparing(TutInfo::getTutorialCode))
+                .forEach(this::addCourseTutorialLabel);
+    }
+
+    /**
+     * Creates a label for a single course and tutorial entry and adds it to courseTutorials HBox.
+     *
+     * @param tutInfo The TutInfo object representing the course and tutorial entry.
+     */
+    private void addCourseTutorialLabel(TutInfo tutInfo) {
+        Label label = new Label(formatCourseTutorialText(tutInfo));
+        label.getStyleClass().add("course-tutorial-label");
+
+        courseTutorials.getChildren().add(label);
+    }
+
+    /**
+     * Formats the display text for a course and tutorial entry.
+     *
+     * @param tutInfo The TutInfo object.
+     * @return The display text of course code and tutorial code in uppercase, separated by a space.
+     */
+    private String formatCourseTutorialText(TutInfo tutInfo) {
+        return tutInfo.getCourseCode().toUpperCase() + " " + tutInfo.getTutorialCode().toUpperCase();
+    }
+
 }
