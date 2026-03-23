@@ -9,9 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Telegram handles must be 5-32 characters long, can only contain alphanumeric characters or underscores, "
-                    + "and can optionally start with '@'.";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram handles must be 5-32 characters long, "
+            + "can only contain alphanumeric characters or underscores, "
+            + "and can optionally start with '@'.";
+
     public static final String VALIDATION_REGEX = "^@?[a-zA-Z0-9_]{5,32}$";
     public static final String TELEGRAM_PREFIX = "@";
 
@@ -41,6 +42,20 @@ public class Telegram {
      */
     public static boolean isValidTelegramHandle(String test) {
         return test.equals("-") || test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+    * Returns telegram handle formatted for display in the UI.
+    * Adds '@' in front of telegram value if it is not '-', otherwise returns it unchanged.
+    *
+    * @return the formatted telegram handle for display.
+    */
+    public String getDisplayValue() {
+        if (value.equals("-")) {
+            return value;
+        }
+
+        return TELEGRAM_PREFIX + value;
     }
 
     @Override
