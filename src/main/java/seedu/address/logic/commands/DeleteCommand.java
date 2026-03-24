@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using its index from the displayed list in the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -20,16 +20,21 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer). " + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer). "
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Successfully deleted the following contact:\n"
             + "Deleted Person: %1$s";
-
 
     public static final String MESSAGE_DELETE_INDEX_ERROR = "Error deleting contact: ";
 
     private final Index targetIndex;
 
+    /**
+     * Creates a {@code DeleteCommand} to delete the {@code Person} at given {@code targetIndex}.
+     *
+     * @param targetIndex Index of the person in the displayed list to be deleted.
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -39,7 +44,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (isIndexOutOfBounds(lastShownList)) {
             throw new CommandException(String.format(
                     MESSAGE_DELETE_INDEX_ERROR + Messages.MESSAGE_INDEX_OUT_OF_BOUNDS + "\n%s",
                     MESSAGE_USAGE));
@@ -47,6 +52,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
@@ -67,6 +73,15 @@ public class DeleteCommand extends Command {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("targetIndex", targetIndex).toString();
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
+    }
+
+    /**
+    * Returns true if the target index is outside the range of the displayed person list.
+    */
+    private boolean isIndexOutOfBounds(List<Person> list) {
+        return targetIndex.getZeroBased() >= list.size();
     }
 }
