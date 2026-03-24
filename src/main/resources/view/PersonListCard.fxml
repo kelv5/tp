@@ -33,13 +33,13 @@
     </VBox>
   </GridPane>
 
-  <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
-              fitToWidth="true" prefWidth="130" maxHeight="105"
-              styleClass="tut-info-scroll">
-    <VBox fx:id="tutInfosContainer">
+  <ScrollPane fitToWidth="true" prefWidth="130" maxHeight="105" styleClass="tut-info-scroll">
+    <VBox>
       <padding>
-        <Insets top="5" right="8" bottom="5" left="8" />
+        <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
+      <Label text="Classes:" styleClass="cell_big_label" />
+      <VBox fx:id="tutInfosContainer" />
     </VBox>
   </ScrollPane>
 
