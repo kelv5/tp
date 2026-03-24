@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.person.TutInfo;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -156,6 +157,36 @@ public class ParserUtil {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return new Telegram(trimmedTelegram);
+    }
+
+    /**
+     * Parses a {@code String course} into a course code.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code course} is invalid.
+     */
+    public static String parseCourse(String course) throws ParseException {
+        requireNonNull(course);
+        String trimmedCourse = course.trim();
+        if (!TutInfo.isValidCode(trimmedCourse)) {
+            throw new ParseException(TutInfo.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedCourse;
+    }
+
+    /**
+     * Parses a {@code String tutorial} into a tutorial code.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutorial} is invalid.
+     */
+    public static String parseTutorial(String tutorial) throws ParseException {
+        requireNonNull(tutorial);
+        String trimmedTutorial = tutorial.trim();
+        if (!TutInfo.isValidCode(trimmedTutorial)) {
+            throw new ParseException(TutInfo.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedTutorial;
     }
 
     /**

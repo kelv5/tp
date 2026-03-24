@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Tag**: A user-defined label attached to a contact to classify and organize them (e.g., student, prof, cs2103, tut01, projectgrpA). Tags enable quick filtering and searching across the contact list.
 * **Course**: A structured module offered by the university with a unique course code (e.g. CS2101).
 * **Tutorial/Lab Group**: A specific class grouping of students with a tutorial/lab code (e.g. Tut10, Lab11) of a course assigned to a TA.
-* **Course Admin**: A staff member responsible for the administrative and operational aspects of a course (e.g., scheduling, enrolment matters, logistics, announcements, and handling exceptional cases).
+* **Course Admin**: A staff member responsible for the administrative and operational aspects of a course (e.g., scheduling, enrollment matters, logistics, announcements, and handling exceptional cases).
 * **Student**: A NUS Computer Science enrolled in a course supported by the TA.
 
 --------------------------------------------------------------------------------------------------------------------
