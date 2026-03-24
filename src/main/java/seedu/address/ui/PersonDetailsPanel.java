@@ -71,7 +71,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
      */
     public PersonDetailsPanel(Person person) {
         super(FXML);
-        
+
         assert person != null : "Person must not be null";
         this.person = person;
 
@@ -226,7 +226,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
     * Sorts the tutorial information by course code first, then by tutorial code.
     * Hides the courseTutorials section from UI if the person has no tutorials.
     */
-    private void displayCourseTutorials() { 
+    private void displayCourseTutorials() {
         assert person.getTutInfos() != null : "Tutorial information list of the person must not be null";
 
         courseTutorials.getChildren().clear();
