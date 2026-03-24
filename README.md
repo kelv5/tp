@@ -1,4 +1,7 @@
+[![Java CI](https://github.com/AY2526S2-CS2103T-T10-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S2-CS2103T-T10-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2526S2-CS2103T-T10-4/tp/graph/badge.svg?token=ARNYOCG1U1)](https://codecov.io/gh/AY2526S2-CS2103T-T10-4/tp)
+
+# TAConnect
 
 ![Ui](docs/images/Ui.png)
 
