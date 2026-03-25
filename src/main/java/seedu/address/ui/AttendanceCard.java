@@ -42,11 +42,8 @@ public class AttendanceCard extends UiPart<Region> {
         courseCode.setText(tutInfo.getCourseCode());
         tutorialCode.setText(tutInfo.getTutorialCode());
 
-
         for (int i = 1; i <= 13; i++) {
-            if (attendance[i]) {
-                cardPane.getChildren().add()
-            }
+            cardPane.getChildren().add(new AttendanceCardField(i, attendance[i]).getRoot());
         }
     }
 }
