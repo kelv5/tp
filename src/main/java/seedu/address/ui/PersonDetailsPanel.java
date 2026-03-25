@@ -87,7 +87,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
      * @param message The default message to display.
      */
     private void displayDefaultDetails(String message) {
-        logger.fine("Showing default details: " + message);
+        logger.fine("Showing default message: " + message);
 
         name.setText(message);
 
