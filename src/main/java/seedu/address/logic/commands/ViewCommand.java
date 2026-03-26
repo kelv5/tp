@@ -49,7 +49,7 @@ public class ViewCommand extends Command {
         if (isIndexOutOfBounds(lastShownList)) {
             throw new CommandException(String.format(
                     MESSAGE_VIEW_INDEX_ERROR + Messages.MESSAGE_INDEX_OUT_OF_BOUNDS + "\n%s",
-                    DeleteCommand.MESSAGE_USAGE));
+                    ViewCommand.MESSAGE_USAGE));
         }
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());

@@ -29,9 +29,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        String exceptedMessages = String.format(DeleteCommand.MESSAGE_DELETE_INDEX_ERROR
+        String expectedMessages = String.format(DeleteCommand.MESSAGE_DELETE_INDEX_ERROR
                 + InvalidIndexMessages.MESSAGE_INDEX_NON_NUMERIC + "\n%s",
                 DeleteCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, "a", exceptedMessages);
+        assertParseFailure(parser, "a", expectedMessages);
     }
 }
