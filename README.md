@@ -5,13 +5,46 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **our project project repo for TAConnect**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org/#contributing-to-se-edu) for more info.
+**TAConnect is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+
+## Quick start
+
+1. Ensure you have Java `17` or above installed in your Computer.<br>
+   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+
+1. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-T10-4/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your TAConnect.
+
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TAConnect.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+    * `list` : Lists all contacts.
+
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 tg/@johndoe` : Adds a contact named `John Doe` to the Address Book.
+
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
+
+    * `view 2` : Displays the full details of the second contact in the current contact list.
+
+    * `clear` : Deletes all contacts.
+
+    * `exit` : Exits the app.
+
+    * `enroll 1 c/CS2103T tut/T01` : Enrolls the first student into CS2103T tutorial group T01.
+
+    * `attend 1 c/CS2103T w/1` : Marks the first student as attended for CS2103T in Week 1.
+
+* For more usage documentation, head over to the [**User Guide**](UserGuide.html).
+* If you are interested in developing TAConnect, refer to [**Developer Guide**](DeveloperGuide.html) for more details.
+
+
+## Acknowledgements
+
+This project is a **part of the se-education.org** initiative. For more information, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
+
+Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
