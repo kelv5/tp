@@ -10,7 +10,7 @@
         <Label fx:id="tutorialCode" styleClass="cell_big_label" />
     </HBox>
     <HBox alignment="CENTER" spacing="20">
-        <VBox fx:id="leftColumn" />
-        <VBox fx:id="rightColumn" />
+        <VBox fx:id="leftColumn" spacing="2" />
+        <VBox fx:id="rightColumn" spacing="2" />
     </HBox>
 </VBox>

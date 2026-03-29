@@ -27,10 +27,10 @@ public class AttendanceCardField extends UiPart<Region> {
         super(FXML);
         this.week.setText("Week " + week);
         if (isAttended) {
-            this.isAttended.setText("Attended");
+            this.isAttended.setText("✓");
             this.isAttended.getStyleClass().add("attended");
         } else {
-            this.isAttended.setText("Not attended");
+            this.isAttended.setText("-");
             this.isAttended.getStyleClass().add("unattended");
         }
     }
