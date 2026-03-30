@@ -171,7 +171,7 @@ public class ParserUtil {
         if (!TutInfo.isValidCode(trimmedCourse)) {
             throw new ParseException(TutInfo.MESSAGE_CONSTRAINTS);
         }
-        return trimmedCourse;
+        return trimmedCourse.toUpperCase();
     }
 
     /**
@@ -186,7 +186,7 @@ public class ParserUtil {
         if (!TutInfo.isValidCode(trimmedTutorial)) {
             throw new ParseException(TutInfo.MESSAGE_CONSTRAINTS);
         }
-        return trimmedTutorial;
+        return trimmedTutorial.toUpperCase();
     }
 
     /**
