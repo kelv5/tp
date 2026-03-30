@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import static seedu.address.ui.PersonDetailsPanel.EMPTY_FIELD_VALUE;
+import static seedu.address.ui.PersonDetailsPanel.MISSING_FIELD_DISPLAY;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,7 +36,7 @@ public class PersonCardField extends UiPart<Region> {
 
     private String formatValue(String value) {
         if (value.equals("-")) {
-            return EMPTY_FIELD_VALUE;
+            return MISSING_FIELD_DISPLAY;
         }
 
         return value;

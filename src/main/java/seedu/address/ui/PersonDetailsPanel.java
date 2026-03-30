@@ -19,7 +19,7 @@ import seedu.address.model.person.TutInfo;
  */
 public class PersonDetailsPanel extends UiPart<Region> {
 
-    public static final String EMPTY_FIELD_VALUE = "---";
+    public static final String MISSING_FIELD_DISPLAY = "---";
 
     private static final String FXML = "PersonDetailsPanel.fxml";
 
@@ -206,7 +206,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
 
     /**
      * Formats a field value for display.
-     * Returns "---" if the value is empty, or a dash ("-") representing an unfilled optional field.
+     * Returns MISSING_FIELD_DISPLAY if the value is empty, or dash showing an unfilled optional field.
      * Returns the value unchanged otherwise.
      *
      * @param value The value of the field.
@@ -216,7 +216,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
         assert value != null : "Field values must not be null";
 
         if (isMissingValue(value)) {
-            return EMPTY_FIELD_VALUE;
+            return MISSING_FIELD_DISPLAY;
         }
 
         return value;

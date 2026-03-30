@@ -26,6 +26,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    private static final String EMPTY_FIELD_PLACEHOLDER = "-";
 
     private final String name;
     private final String phone;
@@ -62,10 +63,10 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().map(p -> p.value).orElse("-");
-        email = source.getEmail().map(p -> p.value).orElse("-");
-        address = source.getAddress().map(p -> p.value).orElse("-");
-        telegram = source.getTelegram().map(p -> p.value).orElse("-");
+        phone = source.getPhone().map(p -> p.value).orElse(EMPTY_FIELD_PLACEHOLDER);
+        email = source.getEmail().map(p -> p.value).orElse(EMPTY_FIELD_PLACEHOLDER);
+        address = source.getAddress().map(p -> p.value).orElse(EMPTY_FIELD_PLACEHOLDER);
+        telegram = source.getTelegram().map(p -> p.value).orElse(EMPTY_FIELD_PLACEHOLDER);
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -105,7 +106,9 @@ class JsonAdaptedPerson {
                     Phone.class.getSimpleName()));
         }
 
-        final Optional<Phone> modelPhone = (phone.equals("-")) ? Optional.empty() : Optional.of(new Phone(phone));
+        final Optional<Phone> modelPhone = (phone.equals(EMPTY_FIELD_PLACEHOLDER))
+                ? Optional.empty()
+                : Optional.of(new Phone(phone));
 
         if (modelPhone.isPresent() && !(Phone.isValidPhone(phone))) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -116,7 +119,9 @@ class JsonAdaptedPerson {
                     Email.class.getSimpleName()));
         }
 
-        final Optional<Email> modelEmail = (email.equals("-")) ? Optional.empty() : Optional.of(new Email(email));
+        final Optional<Email> modelEmail = (email.equals(EMPTY_FIELD_PLACEHOLDER))
+                ? Optional.empty()
+                : Optional.of(new Email(email));
 
         if (modelEmail.isPresent() && !(Email.isValidEmail(email))) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -127,12 +132,12 @@ class JsonAdaptedPerson {
                     Address.class.getSimpleName()));
         }
 
-        final Optional<Address> modelAddress = (address.equals("-"))
+        final Optional<Address> modelAddress = (address.equals(EMPTY_FIELD_PLACEHOLDER))
                 ? Optional.empty()
                 : Optional.of(new Address(address));
 
         if (modelAddress.isPresent() && !(Address.isValidAddress(address))) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
 
         if (telegram == null) {
@@ -140,12 +145,12 @@ class JsonAdaptedPerson {
                     Telegram.class.getSimpleName()));
         }
 
-        final Optional<Telegram> modelTelegram = (telegram.equals("-"))
+        final Optional<Telegram> modelTelegram = (telegram.equals(EMPTY_FIELD_PLACEHOLDER))
                 ? Optional.empty()
                 : Optional.of(new Telegram(telegram));
 
         if (modelTelegram.isPresent() && !(Telegram.isValidTelegramHandle(telegram))) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

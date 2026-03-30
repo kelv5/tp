@@ -21,6 +21,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    // Display value for optional fields that are missing (Optional.empty())
+    private static final String MISSING_OPTIONAL_FIELD_VALUE = "-";
 
     // Mandatory field
     private final Name name;
@@ -73,21 +75,38 @@ public class Person {
         return telegram;
     }
 
-    // Returns display-purpose strings for optional person fields used in the UI.
+    /**
+     * Returns a display-friendly string for the {@code Phone}.
+     * Returns MISSING_OPTIONAL_FIELD_VALUE if the {@code Phone} is missing.
+     */
     public String getDisplayPhone() {
-        return phone.map(Phone::toString).orElse("-");
+        return phone.map(Phone::toString).orElse(MISSING_OPTIONAL_FIELD_VALUE);
     }
 
+    /**
+     * Returns a display-friendly string for the {@code Email}.
+     * Returns MISSING_OPTIONAL_FIELD_VALUE if the {@code Email} is missing.
+     */
     public String getDisplayEmail() {
-        return email.map(Email::toString).orElse("-");
+        return email.map(Email::toString).orElse(MISSING_OPTIONAL_FIELD_VALUE);
     }
 
-    public String getDisplayTelegram() {
-        return telegram.map(Telegram::toDisplayString).orElse("-");
-    }
-
+    /**
+     * Returns a display-friendly string for the {@code Address}.
+     * Returns MISSING_OPTIONAL_FIELD_VALUE if the {@code Address} is missing.
+     */
     public String getDisplayAddress() {
-        return address.map(Address::toString).orElse("-");
+        return address.map(Address::toString).orElse(MISSING_OPTIONAL_FIELD_VALUE);
+    }
+
+    /**
+     * Returns a display-friendly string for the {@code Telegram}.
+     * Adds "@" in front of the telegram handle by Telegram::toDisplayString.
+     * Returns MISSING_OPTIONAL_FIELD_VALUE if the {@code Telegram} is missing.
+     */
+    public String getDisplayTelegram() {
+        // Telegram::toDisplayString has added '@' in front of telegram value.
+        return telegram.map(Telegram::toDisplayString).orElse(MISSING_OPTIONAL_FIELD_VALUE);
     }
 
     /**
