@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -101,26 +102,28 @@ class JsonAdaptedPerson {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!phone.equals("-") && !Phone.isValidPhone(phone)) {
+        if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Optional<Phone> modelPhone = (phone.equals("-")) ? Optional.empty() : Optional.of(new Phone(phone));
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        if (!email.equals("-") && !Email.isValidEmail(email)) {
+        if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Optional<Email> modelEmail = (email.equals("-")) ? Optional.empty() : Optional.of(new Email(email));
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!address.equals("-") && !Address.isValidAddress(address)) {
+        if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Optional<Address> modelAddress = (address.equals("-"))
+                ? Optional.empty()
+                : Optional.of(new Address(address));
 
         if (telegram == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -129,9 +132,12 @@ class JsonAdaptedPerson {
         if (!Telegram.isValidTelegramHandle(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        final Telegram modelTelegram = new Telegram(telegram);
+        final Optional<Telegram> modelTelegram = (telegram.equals("-"))
+                ? Optional.empty()
+                : Optional.of(new Telegram(telegram));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTelegram, modelTags, personTutInfos);
     }
 
