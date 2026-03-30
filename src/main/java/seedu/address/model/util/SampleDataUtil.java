@@ -14,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.person.TutInfo;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,53 +23,26 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"),
-                Optional.of(new Phone("87438807")),
-                Optional.of(new Email("alexyeoh@example.com")),
-                Optional.of(new Address("Blk 30 Geylang Street 29, #06-40")),
-                Optional.of(new Telegram("@AlexYeoh1230")),
-                getTagSet("friends"),
-                new ArrayList<>()),
+            createPerson("Alex Yeoh", "87438807", "alexyeoh@example.com", "Blk 30 Geylang Street 29, #06-40",
+                    "@AlexYeoh1230", getTagSet("friends"),
+                    createTutInfoList(new String[]{"CS2103T", "T21"}, new String[]{"CS2101", "T02"})),
 
-            new Person(new Name("Bernice Yu"),
-                Optional.empty(), // missing phone
-                Optional.of(new Email("berniceyu@example.com")),
-                Optional.of(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
-                Optional.empty(), // missing telegram
-                getTagSet("colleagues", "friends"),
-                new ArrayList<>()),
+            createPerson("Bernice Yu", null, null, "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+                    null, getTagSet("colleagues", "friends"),
+                    createTutInfoList(new String[]{"CS2103T", "T21"})),
 
-            new Person(new Name("Charlotte Oliveiro"),
-                Optional.of(new Phone("93210283")),
-                Optional.of(new Email("charlotte@example.com")),
-                Optional.of(new Address("Blk 11 Ang Mo Kio Street 74, #11-04")),
-                Optional.empty(),
-                getTagSet("neighbours"),
-                new ArrayList<>()),
+            createPerson("Charlotte Oliveiro", "93210283", "charlotte@example.com", null,
+                    "Charlotte_Here", getTagSet("neighbours"), createTutInfoList()),
 
-            new Person(new Name("David Li"),
-                Optional.of(new Phone("91031282")),
-                Optional.of(new Email("lidavid@example.com")),
-                Optional.of(new Address("Blk 436 Serangoon Gardens Street 26, #16-43")),
-                Optional.empty(),
-                getTagSet("family"),
-                new ArrayList<>()),
+            createPerson("David Li", "91031282", "lidavid@example.com", null,
+                    null, getTagSet("family"),
+                    createTutInfoList(new String[]{"CS2103T", "T01"}, new String[]{"CS2101", "T02"})),
 
-            new Person(new Name("Irfan Ibrahim"),
-                Optional.of(new Phone("92492021")),
-                Optional.of(new Email("irfan@example.com")),
-                Optional.of(new Address("Blk 47 Tampines Street 20, #17-35")),
-                Optional.empty(),
-                getTagSet("classmates"),
-                new ArrayList<>()),
+            createPerson("Irfan Ibrahim", null, "irfan@example.com", "Blk 47 Tampines Street 20, #17-35",
+                    "Irfan_Ibrahim_1", getTagSet(), createTutInfoList()),
 
-            new Person(new Name("Roy Balakrishnan"),
-                Optional.of(new Phone("92624417")),
-                Optional.of(new Email("royb@example.com")),
-                Optional.of(new Address("Blk 45 Aljunied Street 85, #11-31")),
-                Optional.empty(),
-                getTagSet("colleagues"),
-                new ArrayList<>())
+            createPerson("Roy Balakrishnan", "92624417", "royb@example.com", "Blk 45 Aljunied Street 85, #11-31",
+                    null, getTagSet("colleagues"), createTutInfoList())
         };
     }
 
@@ -89,4 +63,48 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns an ArrayList of {@code TutInfo} created from the given arrays of tutorialInfos.
+     * Returns an empty arrayList if no tutorial info is given.
+     */
+    private static ArrayList<TutInfo> createTutInfoList(String[]... tutorialInfos) {
+        return Arrays.stream(tutorialInfos)
+                .map(tutorialInfo -> new TutInfo(tutorialInfo[0], tutorialInfo[1]))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Creates a {@code Person} with the given fields.
+     * Missing optional fields (phone, email, address, telegram) are represented by null.
+     */
+    private static Person createPerson(String name, String phone, String email, String address,
+                                    String telegram, Set<Tag> tags, ArrayList<TutInfo> tutInfos) {
+        return new Person(
+            new Name(name),
+            createOptionalPhone(phone),
+            createOptionalEmail(email),
+            createOptionalAddress(address),
+            createOptionalTelegram(telegram),
+            tags,
+            tutInfos
+        );
+    }
+
+    // Creates optional fields from the given values.
+    // If the value is missing represented by null, returns an empty Optional.
+    private static Optional<Phone> createOptionalPhone(String phone) {
+        return (phone == null) ? Optional.empty() : Optional.of(new Phone(phone));
+    }
+
+    private static Optional<Email> createOptionalEmail(String email) {
+        return (email == null) ? Optional.empty() : Optional.of(new Email(email));
+    }
+
+    private static Optional<Address> createOptionalAddress(String address) {
+        return (address == null) ? Optional.empty() : Optional.of(new Address(address));
+    }
+
+    private static Optional<Telegram> createOptionalTelegram(String telegram) {
+        return (telegram == null) ? Optional.empty() : Optional.of(new Telegram(telegram));
+    }
 }
