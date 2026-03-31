@@ -92,10 +92,6 @@
     -fx-font-size: 13px;
 }
 
-.tags-flow-pane {
-    -fx-padding: 0 0 0 0;
-}
-
 .separating-line {
     -fx-background-color: black;
     -fx-pref-height: 2px;
