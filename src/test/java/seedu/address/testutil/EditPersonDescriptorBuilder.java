@@ -82,6 +82,46 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Phone} of the {@code EditPersonDescriptor} to be missing.
+     */
+    public EditPersonDescriptorBuilder withoutPhone() {
+        descriptor.setPhone(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code EditPersonDescriptor} to be missing.
+     */
+    public EditPersonDescriptorBuilder withoutEmail() {
+        descriptor.setEmail(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} to be missing.
+     */
+    public EditPersonDescriptorBuilder withoutAddress() {
+        descriptor.setAddress(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code EditPersonDescriptor} to be missing.
+     */
+    public EditPersonDescriptorBuilder withoutTelegram() {
+        descriptor.setTelegram(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Tags} of the {@code EditPersonDescriptor} to be missing.
+     */
+    public EditPersonDescriptorBuilder withoutTags() {
+        descriptor.setTags(null);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
