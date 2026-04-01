@@ -180,22 +180,28 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose attributes matches any of the given keywords on every field specified in the command flags.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME]… [p/PHONE_NUMBER]… [e/EMAIL]… [a/ADDRESS]… [tg/TELEGRAM_HANDLE]… [t/TAG]… [c/COURSE_CODE]… [tut/TUTORIAL_GROUP]…`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Multiple fields can be specified here, persons matching all the predicates will be returned (i.e. `AND` search).
+* The search is case-insensitive. e.g `n/hans` will match `Hans`
+* The order of the flags does not matter. e.g. `find n/Alex c/CS2103T` 
+will have the same effect as `find c/CS2103T n/Alex`
+* Partial matching is supported for longer fields (i.e. Name, Phone number, Email, Address, and Telegram handle).
+e.g. `n/Han` will match `Hans`
+* Exact matching is used for shorter fields (i.e. Tag, Course code, and Tutorial group). 
+e.g. `c/CS210` won't match `CS2103T`
+* To search by tutorial group, you must also provide a course code (e.g., `c/CS2103T tut/T01`). 
+Which means commands like `find tut/T01` won't work.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`
+* `find n/alex n/david` returns `Alex Yeoh`, `David Li`
+* `find c/CS2103T tut/T01` returns all students in CS2103T tutorial group T01.
+* `find p/807 e/alex` returns all students with `807` in their phone number and has `alex` in their email address.
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find n/alex n/david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
