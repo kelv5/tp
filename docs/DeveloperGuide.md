@@ -369,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. TA requests to enroll a specific contact into a course and tutorial group.
 2. TAConnect validates the input.
-3. TAConnect enrolls the student, displays a success message, and shows the updated contact details.
+3. TAConnect enrolls the student into the course and tutorial group, displays a success message, and shows the updated contact details.
 
    Use case ends.
 
@@ -390,6 +390,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. Student is already enrolled in the given course and tutorial group.
 
     * 2a1. TAConnect informs TA that the student is already enrolled.
+
+      Use case ends.
+
+<ins>**Use case: UC08 - Unenroll A Student**<ins>
+
+**Preconditions:** TA has at least one contact in their list.
+
+**Guarantees:** The specified student is unenrolled from the given course only if the input is valid.
+
+**MSS**
+
+1. TA requests to unenroll a specific contact from a course.
+2. TAConnect validates the input.
+3. TAConnect unenrolls the student from the course, displays a success message, and shows the updated contact details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. TAConnect detects an invalid or out-of-range contact index.
+
+    * 1a1. TAConnect informs TA of the invalid index and displays the correct format with an example.
+
+      Use case ends.
+
+* 1b. TAConnect detects other invalid input (e.g. missing course code, or unnecessarily providing tutorial group).
+
+    * 1b1. TAConnect informs TA of the invalid input and displays the correct format with an example.
+
+      Use case ends.
+
+* 2a. Student is not currently enrolled in the given course.
+
+    * 2a1. TAConnect informs TA that the student is not enrolled in the given course.
 
       Use case ends.
 
