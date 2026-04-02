@@ -33,7 +33,7 @@
     </VBox>
   </GridPane>
 
-  <ScrollPane prefWidth="130" maxHeight="130" styleClass="tut-info-scroll">
+  <ScrollPane fx:id="tutInfosScrollPane" prefWidth="130" maxHeight="130" styleClass="tut-info-scroll">
     <VBox>
       <padding>
         <Insets top="5" right="5" bottom="5" left="5" />
