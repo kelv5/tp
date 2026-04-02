@@ -3,11 +3,12 @@ package seedu.address.ui;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
@@ -21,15 +22,22 @@ public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
-    // True if the current selection was triggered manually via mouse click or keyboard.
+    // True if the selection triggered manually via mouse click or keyboard press is changing selectedPerson.
     // False if the selection was triggered via a user command.
     private boolean isManualSelection = false;
+
+    // Index of the last person selected to be shown in the ExpandedContactPanel.
+    private int lastShownIndex = -1;
 
     @FXML
     private ListView<Person> personListView;
 
+    @FXML
+    private ScrollPane tutInfosScrollPane;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Tracks mouse clicks and keyboard presses and responds to any changes in person selected.
      */
     public PersonListPanel(ObservableList<Person> personList, Consumer<Person> onPersonSelected) {
         super(FXML);
@@ -38,17 +46,59 @@ public class PersonListPanel extends UiPart<Region> {
 
         logger.fine("Initializing PersonListPanel with " + personList.size() + " contacts in the list.");
 
-        personListView.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-            isManualSelection = true;
-        });
+        trackMouseClicks();
 
-        personListView.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            isManualSelection = true;
-        });
+        trackKeyboardPresses();
 
-        personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)
-                -> onPersonSelected.accept(newValue));
+        personListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                lastShownIndex = personListView.getSelectionModel().getSelectedIndex();
+            }
+            onPersonSelected.accept(newValue);
+        });
     }
+
+    /**
+     * Tracks mouse clicks on the {@code PersonListPanel}.
+     * Updates isManualSelection to true only if a different {@code PersonCard} is mouse-clicked.
+     * Updates isManualSelection to false if empty space or same {@code PersonCard} is mouse-clicked.
+     */
+    private void trackMouseClicks() {
+        personListView.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+            Node node = event.getPickResult().getIntersectedNode();
+
+            while (node != null && !(node instanceof ListCell)) {
+                node = node.getParent();
+            }
+
+            if (node instanceof ListCell) {
+                // Safe to suppress as all cells in the PersonListView are ListCell<Person>
+                @SuppressWarnings("unchecked")
+                ListCell<Person> cell = (ListCell<Person>) node;
+
+                // Clicking empty space or scrollbar does not change the selected person
+                if (cell.getItem() == null) {
+                    isManualSelection = false;
+                    return;
+                }
+
+                int currentClickedIndex = cell.getIndex();
+                int lastClickedIndex = personListView.getSelectionModel().getSelectedIndex();
+
+                // Only clicking different PersonCard is considered as a manual selection
+                isManualSelection = (currentClickedIndex != lastClickedIndex);
+            }
+        });
+    }
+
+    /**
+     * Tracks keyboard presses on the {@code PersonListPanel}.
+     * Always updates isManualSelection to true only for any keyboard presses detected.
+     */
+    private void trackKeyboardPresses() {
+        personListView.addEventFilter(KeyEvent.KEY_PRESSED, event -> isManualSelection = true);
+    }
+
 
     /**
      * Scrolls the {@code PersonListPanel} to show and select the given {@code Person}.
@@ -63,22 +113,21 @@ public class PersonListPanel extends UiPart<Region> {
         int index = personListView.getItems().indexOf(person);
 
         if (index >= 0) {
-            logger.info("currently personListIndex is selecting " + person.getName().fullName + " at index " + index);
-
             personListView.layout();
+            personListView.getSelectionModel().select(index);
 
-            Platform.runLater(() -> {
-                personListView.getSelectionModel().select(index);
-                personListView.scrollTo(index);
-            });
+            // Scroll to show the last PersonCard fully
+            int scrollIndex = (index == personListView.getItems().size() - 1) ? index + 1 : index;
+            personListView.scrollTo(scrollIndex);
         }
     }
 
     /**
-     * Clears any currently selected person in the person list so no person is highlighted.
+     * Clears any currently selected person and scrolls to the index of last shown person.
      */
     public void clearSelection() {
         personListView.getSelectionModel().clearSelection();
+        personListView.scrollTo(Math.max(lastShownIndex, 0));
     }
 
     /**
@@ -107,7 +156,12 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                PersonCard card = new PersonCard(person, getIndex() + 1);
+                PersonCard card = new PersonCard(person, getIndex() + 1, getListView());
+
+                card.getRoot().addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                    getListView().getSelectionModel().select(getIndex());
+                });
+
                 setGraphic(card.getRoot());
             }
         }
