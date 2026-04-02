@@ -99,10 +99,25 @@ public class PersonListPanel extends UiPart<Region> {
 
     /**
      * Tracks keyboard presses on the {@code PersonListPanel}.
-     * Always updates isManualSelection to true only for any keyboard presses detected.
+     * Only the keys that can change the selected person will update isManualSelection to true.
      */
     private void trackKeyboardPresses() {
-        personListView.addEventFilter(KeyEvent.KEY_PRESSED, event -> isManualSelection = true);
+        personListView.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()) {
+            case UP:
+            case DOWN:
+            case PAGE_UP:
+            case PAGE_DOWN:
+            case HOME:
+            case END:
+                isManualSelection = true;
+                break;
+
+            default:
+                isManualSelection = false;
+                break;
+            }
+        });
     }
 
 
