@@ -179,29 +179,38 @@ TODO: Add the implementations of some of our features here
 
 **Target user profile**:
 
-- is a NUS computer science teaching assistant managing multiple tutorial classes
-- needs to organize and track contacts across distinct academic roles (students, professors, fellow TAs, course admins)
-- requires the ability to categorize and quickly retrieve contacts using specific tags (e.g., by tutorial group)
-- frequently handles incomplete contact profiles that need to be updated iteratively (e.g., adding Telegram handles later)
-- needs a reliable way to archive and export contact data at the end of the academic semester
-- prefers a streamlined, role-specific tool over a general-purpose address book
-- can type fast
-- prefers desktop apps over other types
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
+* is a NUS computer science teaching assistant managing multiple tutorial classes
+* needs to manage students in each tutorial session efficiently
+* needs to organize and track contacts across distinct academic roles (students, professors, fellow TAs)
+* requires the ability to categorize and quickly retrieve contacts using specific fields (e.g., by tutorial group)
+* frequently handles incomplete contact profiles that need to be updated iteratively (e.g., adding Telegram handles later)
+* needs a reliable way to archive and export contact data at the end of the academic semester (e.g., a JSON file)
+* prefers a streamlined, role-specific tool over a general-purpose address book
+* can type fast
+* prefers desktop apps over other types
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
 
-**Value proposition**:
-This product aims to streamline communication from TA’s to their students, other TA’s, teaching staff, professors, and course admins. It achieves this by organizing contacts into tutorial groups and tags. It supports custom contact categories (e.g. Telegram handles), and more searching functionality (e.g. by groups). It also makes contacts storing more flexible by only making names mandatory.
+**Value proposition**: 
+This product aims to streamline communication from TAs‘ to their students, other TAs, teaching staff,and professors. It achieves this by organizing contacts into courses, tutorial groups and tags. It supports custom contact categories (e.g., Telegram handles), and more searching functionality (e.g., by groups and/or by email etc.). It also makes contacts storing more flexible by only making names mandatory. 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                      | So that I can…​                                            |
-| -------- | ------- | --------------------------------- | ---------------------------------------------------------- |
-| `* * *`  | TA      | add a contact to the address book | keep a record of a person.                                 |
-| `* * *`  | TA      | delete a contact from the app     | remove unwanted entries and keep my contact list accurate. |
-| `* * *`  | TA      | view all contacts from the app    | see all entries in the contact list.                       |
+| Priority | As a …​ | I want to …​                                                   | So that I can…​                                                                                    |
+|----------|---------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `* * *`  | TA      | add a contact to the address book                              | keep a record of a person.                                                                         |
+| `* * *`  | TA      | delete a contact from the app                                  | remove unwanted entries and keep my contact list accurate.                                         |
+| `* * *`  | TA      | view all contacts in the app                                   | see all entries in the contact list.                                                               |
+| `* *`    | TA      | edit details of a contact                                      | keep contact information up to date                                                                |
+| `* *`    | TA      | find contacts from the app by one or more specific attributes  | see specific types of contacts(e.g.,a specific tag/course) in the contact list.                    |
+| `* *`    | TA      | view detailed information of a contact                         | access all relevant information including attendance record about the student                      |
+| `*`      | TA      | enroll a student to a course and a tutorial group              | distinguish my students from different courses                                                     |
+| `*`      | TA      | remove a student from a tutorial or course                     | update course droppings or enrollment mistakes                                                     |
+| `*`      | TA      | mark a tutorial session from a course of a student as attended | identify if a student needs help                                                                   |
+| `*`      | TA      | update a student’s attendance record                           | fix any incorrect attendance records (i.e.,unattend a session)                                     |
+| `*`      | TA      | assign a contact tags                                          | specify  roles for my contacts (e.g.,fellow TAs) or mark them (e.g.,mark a student as an absentee) |
 
 ### Use cases
 
@@ -479,25 +488,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. All commands should have a response within 500ms.
 2. All contact information should be stored locally.
 3. Whenever a typo or mistake is made there is a message instead of a crash.
-4. All actions other than ‘list’ should have a warning before it for confirmation.
-5. The software should be able to host at least 100 students in total.
-6. The software should take no more than 200MB of space.
-7. Exported files for backup should be stored in a user-editable format.
-8. The software should be platform-independent, supporting all Windows, macOS and Linux.
-9. The software should not require any installers and should be able to be packaged into a single JAR file.
-10. The software should not depend on any remote server.
-11. GUI should provide visual feedback, but input is primarily text-based.
-12. The software should be able to handle corrupted and missing files.
-13. The software should be single-user based only.
+4. The software should be able to host at least 100 students in total.
+5. The software should take no more than 200MB of space.
+6. Exported files for backup should be stored in a user-editable format (e.g., a JSON file).
+7. The software should be platform-independent, supporting all Windows, macOS and Linux.
+8. The software should not require any installers and should be able to be packaged into a single JAR file.
+9. The software should not depend on any remote server.
+10. GUI should provide visual feedback, but input is primarily text-based.
+11. The software should be able to handle corrupted and missing files.
+12. The software should be single-user based only.
 
 ### Glossary
 
-- **Teaching Assistant (TA)**: A member of the teaching team who supports a course by running tutorials/labs, facilitating discussions, answering student questions, and coordinating with professors, course admins, and other TAs.
-- **Tag**: A user-defined label attached to a contact to classify and organize them (e.g., student, prof, cs2103, tut01, projectgrpA). Tags enable quick filtering and searching across the contact list.
-- **Course**: A structured module offered by the university with a unique course code (e.g. CS2101).
-- **Tutorial/Lab Group**: A specific class grouping of students with a tutorial/lab code (e.g. Tut10, Lab11) of a course assigned to a TA.
-- **Course Admin**: A staff member responsible for the administrative and operational aspects of a course (e.g., scheduling, enrollment matters, logistics, announcements, and handling exceptional cases).
-- **Student**: A NUS Computer Science enrolled in a course supported by the TA.
+* **Teaching Assistant (TA)**: A member of the teaching team who supports a course by running tutorials/labs, facilitating discussions, answering student questions, and coordinating with professors, course admins, and other TAs.
+* **Tag**: A user-defined label attached to a contact to classify and organize them (e.g., student, prof, cs2103, tut01, projectgrpA). Tags enable quick filtering and searching across the contact list.
+* **Course**: A structured module offered by the university with a unique course code (e.g. CS2101).
+* **Tutorial/Lab Group**: A specific class grouping of students with a tutorial/lab code (e.g. Tut10, Lab11) of a course assigned to a TA.
+* **Student**: A NUS Computer Science enrolled in a course supported by the TA.
 
 ---
 
