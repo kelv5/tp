@@ -202,7 +202,7 @@ public class Person {
      * Case-insensitive.
      */
     public boolean emailMatches(String keyword) {
-       return StringUtil.containsIgnoreCase(email.toString(), keyword);
+        return StringUtil.containsIgnoreCase(email.toString(), keyword);
     }
 
     /**
