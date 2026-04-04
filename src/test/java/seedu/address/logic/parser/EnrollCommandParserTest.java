@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EnrollCommand;
 import seedu.address.model.person.TutInfo;
 
@@ -40,5 +43,12 @@ public class EnrollCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, " 1 c/CS2103T! tut/T01", TutInfo.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_duplicatePrefixes_failure() {
+        String expectedMessage = Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COURSE);
+        assertParseFailure(parser, " 1 " + PREFIX_COURSE + "CS2103T " + PREFIX_COURSE + "CS2101 "
+                + PREFIX_TUTORIAL + "T01", expectedMessage);
     }
 }

@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AttendCommand;
 
 public class AttendCommandParserTest {
@@ -53,5 +54,12 @@ public class AttendCommandParserTest {
                 + PREFIX_WEEK + "14", "Week must be between 1 and 13");
         assertParseFailure(parser, " 1 " + PREFIX_COURSE + "CS2103T "
                 + PREFIX_WEEK + "abc", "Week must be a number.");
+    }
+
+    @Test
+    public void parse_duplicatePrefixes_failure() {
+        String expectedMessage = Messages.getErrorMessageForDuplicatePrefixes(PREFIX_WEEK);
+        assertParseFailure(parser, " 1 " + PREFIX_COURSE + "CS2103T " + PREFIX_WEEK + "1 "
+                + PREFIX_WEEK + "2", expectedMessage);
     }
 }

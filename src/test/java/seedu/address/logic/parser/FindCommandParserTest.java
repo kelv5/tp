@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -41,6 +42,13 @@ public class FindCommandParserTest {
     @Test
     public void parse_tutorialWithoutCourse_throwsParseException() {
         assertParseFailure(parser, " " + PREFIX_TUTORIAL + "T01", FindCommand.MESSAGE_TUTORIAL_REQUIRES_COURSE);
+    }
+
+    @Test
+    public void parse_emptyPrefixValue_throwsParseException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, " " + PREFIX_NAME, expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_COURSE + " " + PREFIX_TUTORIAL + "T01", expectedMessage);
     }
 
 

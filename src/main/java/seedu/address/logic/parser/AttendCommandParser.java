@@ -29,6 +29,8 @@ public class AttendCommandParser implements Parser<AttendCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COURSE, PREFIX_WEEK);
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
