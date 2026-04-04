@@ -40,6 +40,9 @@ public class UnsetCommand extends Command {
     public static final String MESSAGE_MULTIPLE_FIELDS = "Only one field can be unset at a time.";
     public static final String MESSAGE_NAME_CANNOT_BE_UNSET = "Name is a mandatory field and cannot be unset.";
     public static final String MESSAGE_EMAIL_CANNOT_BE_UNSET = "Email is a mandatory field and cannot be unset.";
+    public static final String MESSAGE_TUTINFO_CANNOT_BE_UNSET =
+        "Tutorials or courses cannot be removed using 'unset'. "
+        + "Tips: Use 'unenroll' to remove a course, which also removes its tutorial.";
     public static final String MESSAGE_FIELD_VALUE_NOT_ALLOWED =
             "Unset only accepts a field prefix with no value. Example: unset 1 tg/";
     public static final String MESSAGE_UNSET_SUCCESS =

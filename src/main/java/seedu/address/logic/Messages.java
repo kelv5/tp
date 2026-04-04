@@ -22,6 +22,8 @@ public class Messages {
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_PREAMBLE_NOT_EMPTY =
         "Unexpected text detected before prefixes. Please use the correct format. \n";
+    public static final String MESSAGE_INVALID_PREFIX =
+        "The prefix \"%1$s\" is not supported!\n%2$s";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
