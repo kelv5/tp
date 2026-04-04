@@ -111,7 +111,8 @@ public class PersonTest {
         assertTrue(editedAlice.isSamePerson(anotherEditedAlice2));
 
         // first person email missing, second has email and same phone -> returns true (phone matches)
-        assertFalse(editedAlice.isSamePerson(new PersonBuilder(ALICE).withoutEmail().withPhone(VALID_PHONE_BOB).withoutTelegram().build()));
+        assertFalse(editedAlice.isSamePerson(new PersonBuilder(ALICE).withoutEmail().withPhone(VALID_PHONE_BOB)
+                .withoutTelegram().build()));
 
         // all unique identifiers missing on one side -> returns false
         editedAlice = new PersonBuilder(ALICE).withoutEmail().withoutPhone().withoutTelegram().build();

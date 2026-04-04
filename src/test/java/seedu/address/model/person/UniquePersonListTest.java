@@ -205,7 +205,8 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonChangesNonUniqueFields_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.add(BOB);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);
