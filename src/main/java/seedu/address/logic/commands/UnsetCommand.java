@@ -31,7 +31,7 @@ public class UnsetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unsets exactly one optional field of the person "
             + "identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) [OPTIONAL_FIELD_PREFIX]\n"
+            + "Parameters: INDEX (must be a positive integer) [OPTIONAL_FIELD_PREFIX] "
             + "Optional fields: " + PREFIX_PHONE + " " + PREFIX_ADDRESS + " "
             + PREFIX_TELEGRAM + " " + PREFIX_TAG + "\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TELEGRAM;

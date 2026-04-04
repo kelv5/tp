@@ -31,8 +31,8 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TELEGRAM + "@johndoe "
             + PREFIX_TAG + "friends "
@@ -42,10 +42,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "Email must be unique!"
             + " This email already exists in the address book.";
     public static final String MESSAGE_MISSING_NAME =
-            "Name is required for adding a person!\n" + MESSAGE_USAGE;
+            "Name is required and must start with the prefix (n/) for adding a person\n" + MESSAGE_USAGE;
 
     public static final String MESSAGE_MISSING_EMAIL =
-            "Email is required for adding a person!\n" + MESSAGE_USAGE;
+            "Email is required and must start with the prefix (e/) for adding a person\n" + MESSAGE_USAGE;
 
     private final Person toAdd;
 
