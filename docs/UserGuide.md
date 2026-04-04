@@ -135,8 +135,8 @@ Edits an existing person in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tg/TELEGRAM_HANDLE] [t/TAG]…​`
 
-- Edits the person at the specified `INDEX`. 
-- The `INDEX` refers to the index number shown in the displayed person list. 
+- Edits the person at the specified `INDEX`.
+- The `INDEX` refers to the index number shown in the displayed person list.
 - The `INDEX` **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
@@ -161,7 +161,7 @@ Format: `unset INDEX FIELD_PREFIX`
 
 - Removes the optional field identified by `FIELD_PREFIX` for the person at the specified `INDEX`.
 - After `unset` command, the optional field will be **empty**.
-- The `INDEX` refers to the index number shown in the displayed person list. 
+- The `INDEX` refers to the index number shown in the displayed person list.
 - The `INDEX` **must be a positive integer** 1, 2, 3, …​
 - `FIELD_PREFIX` must be exactly one of `p/`, `a/`, `tg/`, or `t/`.
 - The prefix must be provided without any value after it. For example, use `unset 1 tg/`, not `unset 1 tg/@johndoe`.

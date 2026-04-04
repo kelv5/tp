@@ -192,7 +192,7 @@ TODO: Add the implementations of some of our features here
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 This product aims to streamline communication from TAs‘ to their students, other TAs, teaching staff,and professors. It achieves this by organizing contacts into courses, tutorial groups and tags. It supports custom contact categories (e.g., Telegram handles), and more searching functionality (e.g., by groups and/or by email etc.). It also makes contacts storing more flexible by only making names mandatory. 
 
 ### User stories
@@ -589,14 +589,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Enrolling a person into a course with tutorial class
 
-    1. Prerequisites: 
+    1. Prerequisites:
     - The first person in the contact list is enrolled in the course `CS2103T` and tutorial class `T11`.
     - If the first person is enrolled in `CS2103T` but in different tutorial class, unenroll the person first using `unenroll 1 c/CS2103T` then followed by `enroll 1 c/CS2103T t/T11`.
     - If not enrolled into any tutorials of `CS2103T`, enroll the first person using `enroll 1 c/CS2103T t/T11`
 
     2. Test case: `enroll 1 CS2103T T19`<br>
        Expected: The first person is not enrolled into `CS2103T T19`. Error details is shown in the status message indicating that the student is already enrolled in `CS2103T`.
-    
+
     3. Test case: `enroll 1 CS2109S T06`<br>
        Expected: The student is successfully enrolled in course `CS2109S` with tutorial `T06`. The status message shows the student details with the updated course and tutorial enrollment.
 
@@ -604,7 +604,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing data files
    1. Test case: Delete the `addressbook.json` file from `[JAR file location]/data/` if present. Launch the application.<br>
-      Expected: 
+      Expected:
       - The application detects that the data file is missing and launches without any crashes.
       - A default sample contact list containing 6 persons is automatically loaded.
 
