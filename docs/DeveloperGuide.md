@@ -486,18 +486,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. All commands should have a response within 500ms.
-2. All contact information should be stored locally.
-3. Whenever a typo or mistake is made there is a message instead of a crash.
-4. The software should be able to host at least 100 students in total.
-5. The software should take no more than 200MB of space.
-6. Exported files for backup should be stored in a user-editable format (e.g., a JSON file).
-7. The software should be platform-independent, supporting all Windows, macOS and Linux.
-8. The software should not require any installers and should be able to be packaged into a single JAR file.
-9. The software should not depend on any remote server.
-10. GUI should provide visual feedback, but input is primarily text-based.
-11. The software should be able to handle corrupted and missing files.
-12. The software should be single-user based only.
+1. The application should run on Windows, Linux, and macOS with Java `17` installed.
+2. The system should respond to all user commands and update the GUI within 2 seconds.
+3. The application should launch and display the GUI with loaded contact data within 5 seconds.
+4. The system should support up to 250 contacts without violating performance requirements defined by response time of at most 2 seconds.
+5. The software should take no more than 50MB of space.
+6. The application should function without an internet connection and external servers.
+7. The system should handle invalid inputs gracefully by displaying clear error messages instead of crashing.
+8. The application should be usable directly via the provided single JAR file without requiring an installer.
+9. All application data should be stored locally in a human-editable JSON file.
+10. The system should prevent corruption of data through modifications done using the application with commands. Any corrupted files or data loss caused by manual edits of the JSON files are outside of the scope of this requirement.
+11. All changes to the addressbook should be automatically saved to the JSON file immediately after commands that modifies data.
+12. GUI should allow full functionality at standard screen resolution defined as 1920×1080 and higher, at 100% and 125% display scale.
+13. The application should allow users with above average typing speed for regular English text (52 words per minute) to complete supported tasks using CLI quicker than using the GUI or mouse.
+14. The application should be single-user based and not support concurrent multi-user access.
 
 ### Glossary
 
