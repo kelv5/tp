@@ -51,26 +51,6 @@ public class UnsetCommandTest {
     }
 
     @Test
-    public void execute_unsetEmailUnfilteredList_success() {
-        Person personToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personToEdit).withoutEmail().build();
-
-        UnsetCommand unsetCommand = new UnsetCommand(INDEX_SECOND_PERSON, CliSyntax.PREFIX_EMAIL);
-
-        String expectedMessage = String.format(UnsetCommand.MESSAGE_UNSET_SUCCESS,
-                "email", "johnd@example.com", personToEdit.getName(), INDEX_SECOND_PERSON.getOneBased());
-
-        model.setPersonToShow(null);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(personToEdit, editedPerson);
-        expectedModel.setPersonToShow(editedPerson);
-
-        assertCommandSuccess(unsetCommand, model, expectedMessage, expectedModel);
-        assertEquals(expectedModel.getPersonToShow(), model.getPersonToShow());
-    }
-
-    @Test
     public void execute_unsetAddressUnfilteredList_success() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personToEdit).withoutAddress().build();
@@ -140,20 +120,6 @@ public class UnsetCommandTest {
 
         String expectedMessage = String.format(UnsetCommand.MESSAGE_FIELD_ALREADY_MISSING,
                 "phone number", personWithoutPhone.getName(), INDEX_FIRST_PERSON.getOneBased());
-
-        assertCommandFailure(unsetCommand, model, expectedMessage);
-    }
-
-    @Test
-    public void execute_emailAlreadyMissing_failure() {
-        Person originalPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person personWithoutEmail = new PersonBuilder(originalPerson).withoutEmail().build();
-        model.setPerson(originalPerson, personWithoutEmail);
-
-        UnsetCommand unsetCommand = new UnsetCommand(INDEX_FIRST_PERSON, CliSyntax.PREFIX_EMAIL);
-
-        String expectedMessage = String.format(UnsetCommand.MESSAGE_FIELD_ALREADY_MISSING,
-                "email", personWithoutEmail.getName(), INDEX_FIRST_PERSON.getOneBased());
 
         assertCommandFailure(unsetCommand, model, expectedMessage);
     }

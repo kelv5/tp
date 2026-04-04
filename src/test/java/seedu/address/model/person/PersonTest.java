@@ -37,15 +37,6 @@ public class PersonTest {
     }
 
     @Test
-    public void getDisplayEmail_withOrWithoutEmail_returnsCorrectValue() {
-        Person personWithEmail = new PersonBuilder().withEmail("xxx@gmail.com").build();
-        assertEquals("xxx@gmail.com", personWithEmail.getDisplayEmail());
-
-        Person personWithoutEmail = new PersonBuilder().withoutEmail().build();
-        assertEquals(Person.MISSING_OPTIONAL_FIELD_VALUE, personWithoutEmail.getDisplayEmail());
-    }
-
-    @Test
     public void getDisplayAddress_withOrWithoutAddress_returnsCorrectValue() {
         Person personWithAddress = new PersonBuilder().withAddress("Blk 30 Geylang Street 29, #06-40").build();
         assertEquals("Blk 30 Geylang Street 29, #06-40", personWithAddress.getDisplayAddress());
@@ -83,17 +74,6 @@ public class PersonTest {
         // email differs in case, all other attributes same -> returns true
         Person editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
         assertTrue(BOB.isSamePerson(editedBob));
-
-        // email is missing, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withoutEmail().build();
-        Person anotherEditedAlice = new PersonBuilder(ALICE).withoutEmail().build();
-        assertFalse(editedAlice.isSamePerson(anotherEditedAlice));
-
-        // first person email is missing, second person email is present -> returns false
-        assertFalse(editedAlice.isSamePerson(ALICE));
-
-        // first person email is present, second person email is missing -> returns false
-        assertFalse(ALICE.isSamePerson(editedAlice));
     }
 
     @Test

@@ -143,7 +143,6 @@ public class AddCommandParserTest {
         // zero tags, missing phone, email, address
         Person expectedPerson = new PersonBuilder(AMY)
                 .withoutPhone()
-                .withoutEmail()
                 .withoutAddress()
                 .withoutTelegram()
                 .withTags()
