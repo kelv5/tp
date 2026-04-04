@@ -40,12 +40,12 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // Rejects if name is missing for addCommand
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-            throw new ParseException(String.format(AddCommand.MESSAGE_MISSING_NAME, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(AddCommand.MESSAGE_MISSING_NAME);
         }
 
         // Rejects if email is missing for addCommand
         if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-            throw new ParseException(String.format(AddCommand.MESSAGE_MISSING_EMAIL, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(AddCommand.MESSAGE_MISSING_EMAIL);
         }
 
         // Checks if there is extra text before first valid prefix

@@ -23,9 +23,9 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME (mandatory) "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -41,8 +41,11 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "Email must be unique!"
             + " This email already exists in the address book.";
-    public static final String MESSAGE_MISSING_NAME = "Name is required for adding a person!";
-    public static final String MESSAGE_MISSING_EMAIL = "Email is required for adding a person!";
+    public static final String MESSAGE_MISSING_NAME =
+            "Name is required for adding a person!\n" + MESSAGE_USAGE;
+
+    public static final String MESSAGE_MISSING_EMAIL =
+            "Email is required for adding a person!\n" + MESSAGE_USAGE;
 
     private final Person toAdd;
 

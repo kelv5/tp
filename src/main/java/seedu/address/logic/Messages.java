@@ -20,6 +20,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
             "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_PREAMBLE_NOT_EMPTY =
+        "Unexpected text detected before prefixes. Please use the correct format. \n";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -42,7 +44,7 @@ public class Messages {
                 .append("; Phone: ")
                 .append(person.getDisplayPhone())
                 .append("; Email: ")
-                .append(person.getDisplayEmail())
+                .append(person.getEmail())
                 .append("; Telegram: ")
                 .append(person.getDisplayTelegram())
                 .append("; Address: ")
