@@ -46,7 +46,7 @@ public class UnsetCommand extends Command {
     public static final String MESSAGE_FIELD_VALUE_NOT_ALLOWED =
             "Unset only accepts a field prefix with no value. Example: unset 1 tg/";
     public static final String MESSAGE_UNSET_SUCCESS =
-            "Unset %1$s (previously: %2$s) for %3$s (person at index %4$s).";
+            "Successfully unset %1$s (Previously: %2$s) for %3$s at index %4$s.";
     public static final String MESSAGE_FIELD_ALREADY_MISSING =
             "Note: %1$s for %2$s at index %3$s is already missing; No changes were made.";
 
@@ -85,7 +85,7 @@ public class UnsetCommand extends Command {
         // Unsetting an already missing optional field
         if (!isFieldSet(personToEdit, fieldPrefix)) {
             return new CommandResult(String.format(MESSAGE_FIELD_ALREADY_MISSING,
-                    getDisplayName(fieldPrefix), personToEdit.getName(), index.getOneBased()));
+                    capitaliseFirstLetter(getDisplayName(fieldPrefix)), personToEdit.getName(), index.getOneBased()));
         }
 
         return new CommandResult(String.format(MESSAGE_UNSET_SUCCESS,
@@ -138,13 +138,13 @@ public class UnsetCommand extends Command {
     private String getDisplayName(Prefix fieldPrefix) {
         switch (fieldPrefix.getPrefix()) {
         case "p/":
-            return "Phone number";
+            return "phone number";
         case "a/":
-            return "Address";
+            return "address";
         case "tg/":
-            return "Telegram";
+            return "telegram";
         case "t/":
-            return "Tag";
+            return "tag";
         default:
             throw new IllegalArgumentException("Unsupported unset field prefix: " + fieldPrefix);
         }
@@ -191,5 +191,16 @@ public class UnsetCommand extends Command {
         default:
             throw new IllegalArgumentException("Unsupported unset field prefix: " + fieldPrefix);
         }
+    }
+
+    /**
+     * Capatilise the first letter of the string given.
+     */
+    private String capitaliseFirstLetter(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 }

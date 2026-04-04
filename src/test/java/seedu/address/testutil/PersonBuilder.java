@@ -77,6 +77,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Removes all {@code tags} from the {@code Person} that we are building.
+     */
+    public PersonBuilder withoutTags() {
+        this.tags = new HashSet<>();
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
