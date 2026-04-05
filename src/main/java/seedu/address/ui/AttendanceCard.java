@@ -13,6 +13,10 @@ public class AttendanceCard extends UiPart<Region> {
 
     private static final String FXML = "AttendanceListCard.fxml";
 
+    private static final int LEFT_COLUMN_LABELS_COUNT = 4;
+
+    private static final int MIDDLE_COLUMN_LABELS_COUNT = 8;
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -24,9 +28,6 @@ public class AttendanceCard extends UiPart<Region> {
     public final TutInfo tutInfo;
 
     public final boolean[] attendance;
-
-    private final int LEFT_COLUMN_MAX_LABELS = 4;
-    private final int MIDDLE_COLUMN_MAX_LABELS = 4;
 
     @FXML
     private VBox cardPane;
@@ -62,9 +63,9 @@ public class AttendanceCard extends UiPart<Region> {
         for (int i = 1; i <= 13; i++) {
             AttendanceCardField field = new AttendanceCardField(i, attendance[i - 1]);
 
-            if (i <= LEFT_COLUMN_MAX_LABELS) {
+            if (i <= LEFT_COLUMN_LABELS_COUNT) {
                 leftColumn.getChildren().add(field.getRoot());
-            } else if (i <= MIDDLE_COLUMN_MAX_LABELS) {
+            } else if (i <= MIDDLE_COLUMN_LABELS_COUNT) {
                 middleColumn.getChildren().add(field.getRoot());
             } else {
                 rightColumn.getChildren().add(field.getRoot());

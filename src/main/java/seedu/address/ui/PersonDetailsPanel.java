@@ -84,7 +84,7 @@ public class PersonDetailsPanel extends UiPart<Region> {
         // Forward vertical scroll from child scrollpanes to the parent
         Stream.of(nameScrollPane, fieldValuesScrollPane, courseTutorialsScrollPane)
                 .forEach(this::forwardVerticalScrollUp);
-        
+
         displayPersonDetails();
     }
 

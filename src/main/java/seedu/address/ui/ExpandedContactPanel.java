@@ -50,7 +50,7 @@ public class ExpandedContactPanel extends UiPart<Region> {
      * @param selectedPerson The person who is currently selected in the contact list.
      */
     public void setSelectedPerson(Person selectedPerson) {
-        getRoot().getStyleClass().remove("contact-selected"); 
+        getRoot().getStyleClass().remove("contact-selected");
 
         if (selectedPerson == null) {
             logger.fine("Displaying default details due to no contact selected");
