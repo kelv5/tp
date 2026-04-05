@@ -145,7 +145,7 @@ public class Person {
         return otherPerson.getEmail().equals(getEmail());
     }
 
-  /**
+    /**
      * Returns true if both persons have the same Telegram handle.
      * This defines a weaker notion of equality between two Telegram handles.
      * The missing Telegram handles are not considered unique.
