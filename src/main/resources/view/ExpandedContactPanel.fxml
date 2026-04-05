@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-    fx:id="expandedContactScrollPane" fitToWidth="true" fitToHeight="true" 
+    fx:id="expandedContactScrollPane" fitToWidth="true" fitToHeight="true"
     hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" stylesheets="@ExpandedContactPanel.css">
 
   <StackPane fx:id="detailsWrapper" styleClass="expanded-panel">
