@@ -24,12 +24,6 @@ public class UnenrollCommandParser implements Parser<UnenrollCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COURSE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_COURSE) || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnenrollCommand.MESSAGE_USAGE));
-        }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COURSE);
-
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -37,6 +31,12 @@ public class UnenrollCommandParser implements Parser<UnenrollCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_INVALID_INDEX + "\n" + UnenrollCommand.MESSAGE_USAGE), pe);
         }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_COURSE) || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnenrollCommand.MESSAGE_USAGE));
+        }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_COURSE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COURSE) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnenrollCommand.MESSAGE_USAGE));

@@ -38,7 +38,10 @@ public class UnenrollCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnenrollCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT,
+                Messages.MESSAGE_INVALID_INDEX + "\n" + UnenrollCommand.MESSAGE_USAGE
+        );
         assertParseFailure(parser, " a c/CS2103T", expectedMessage);
         assertParseFailure(parser, " 0 c/CS2103T", expectedMessage);
         assertParseFailure(parser, " -1 c/CS2103T", expectedMessage);
