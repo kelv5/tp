@@ -28,13 +28,13 @@
 
 .shared-scroll-pane .scroll-bar {
     -fx-background-color: #cacaca;
-    -fx-pref-height: 11;
-    -fx-pref-width: 11;
+    -fx-pref-height: 14;
+    -fx-pref-width: 14;
 }
 
 .shared-scroll-pane .thumb {
     -fx-background-color: derive(#cacaca, -40%);
-    -fx-background-insets: 1;
+    -fx-background-insets: 2;
 }
 
 .shared-scroll-pane .increment-button,
