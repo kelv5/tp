@@ -3,8 +3,10 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -22,15 +24,22 @@ public class ExpandedContactPanel extends UiPart<Region> {
     @FXML
     private VBox detailsContainer;
 
+    @FXML
+    private ScrollPane expandedContactScrollPane;
+
     /**
      * Creates a {@code ExpandedContactPanel}.
      * Initializes the panel to show the default message.
      */
     public ExpandedContactPanel() {
         super(FXML);
-        getRoot().setPickOnBounds(false);
-        getRoot().setMouseTransparent(false);
         showDefaultDetails();
+    }
+
+    @FXML
+    private void initialize() {
+        // Ensure the content of ExpandedContactScrollPane does not exceeds its visible area.
+        fitContentToBounds(expandedContactScrollPane);
     }
 
     /**
@@ -95,5 +104,15 @@ public class ExpandedContactPanel extends UiPart<Region> {
     private void updateDetailsContainer(PersonDetailsPanel personDetailsPanel) {
         detailsContainer.getChildren().clear();
         detailsContainer.getChildren().add(personDetailsPanel.getRoot());
+    }
+
+    /**
+    * Keeps the content of the {@code ScrollPane} within its bounds.
+    */
+    private void fitContentToBounds(ScrollPane scrollPane) {
+        Rectangle clip = new Rectangle();
+        clip.widthProperty().bind(scrollPane.widthProperty());
+        clip.heightProperty().bind(scrollPane.heightProperty());
+        scrollPane.setClip(clip);
     }
 }

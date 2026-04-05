@@ -1,13 +1,8 @@
-.expanded-panel {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
 #expandedContactScrollPane {
     -fx-background-color: #cacaca;
     -fx-border-color: #818181;
     -fx-border-width: 6;
-    -fx-padding: 15 18 12 26;
+    -fx-padding: 15 18 12 22;
 }
 
 #expandedContactScrollPane.contact-selected {
@@ -17,7 +12,11 @@
 
 #expandedContactScrollPane .viewport {
     -fx-background-color: transparent;
-    -fx-background-insets: 0;
+}
+
+.expanded-panel {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 .name-label {
@@ -72,11 +71,13 @@
     -fx-text-fill: #1d1d1d;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
+    -fx-padding: 0 4 0 0;
 }
 
 .field-values-column .label {
     -fx-text-fill: derive(#1d1d1d, 20%);
     -fx-font-size: 16px;
+    -fx-padding: 0 4 0 0;
 }
 
 .field-names-column .label.missing-field,
@@ -86,14 +87,16 @@
 }
 
 .tags-scroll-pane {
-    -fx-padding: 0 0 3 0;
+    -fx-padding: 4 0 4 0;
 }
 
-#tags .label {
+.tags-flow-pane .label {
     -fx-background-color: #775500ca;
     -fx-padding: 3 6 3 6;
     -fx-background-radius: 4;
     -fx-font-size: 13px;
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
 }
 
 .separating-line {
