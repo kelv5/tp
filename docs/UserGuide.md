@@ -99,7 +99,9 @@ Format: `add n/NAME e/EMAIL [p/PHONE_NUMBER] [a/ADDRESS] [tg/TELEGRAM_HANDLE] [t
 - You must provide both the person’s `NAME` and `EMAIL` when adding a new contact.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0). 
+Tags are case-insensitive and duplicate tags will be automatically filtered 
+(e.g., `t/friend t/Friend` will be treated as only one `friend` tag).
 </div>
 
 Examples:
@@ -141,9 +143,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tg/TELEGRAM
 - The `INDEX` **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- Fields cannot be edited to empty values. Please use the `unset` command to remove a field instead.
+- Fields cannot be edited to empty values.
 - When editing tags, the existing tags of the person will be replaced. (i.e., new tags will overwrite existing ones, not be added to them).
-- Tags cannot be left empty. Use the `unset` command to remove all tags instead.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 - Fields cannot be edited to empty values and tags cannot be left empty. Please use the `unset` command to remove a field instead.
